@@ -4,13 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using CheeseMVC.Data;
+using CheeseMVC.Models;
 
 namespace CheeseMVC.Migrations
 {
     [DbContext(typeof(CheeseDbContext))]
-    partial class CheeseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170624200031_Part1Again")]
+    partial class Part1Again
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -21,15 +23,13 @@ namespace CheeseMVC.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CheeseCategoryID");
-
                     b.Property<string>("Description");
 
                     b.Property<string>("Name");
 
-                    b.HasKey("ID");
+                    b.Property<int>("Type");
 
-                    b.HasIndex("CheeseCategoryID");
+                    b.HasKey("ID");
 
                     b.ToTable("Cheeses");
                 });
@@ -44,14 +44,6 @@ namespace CheeseMVC.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("CheeseCategories");
-                });
-
-            modelBuilder.Entity("CheeseMVC.Models.Cheese", b =>
-                {
-                    b.HasOne("CheeseMVC.Models.CheeseCategory", "CheeseCategory")
-                        .WithMany("Cheeses")
-                        .HasForeignKey("CheeseCategoryID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }
