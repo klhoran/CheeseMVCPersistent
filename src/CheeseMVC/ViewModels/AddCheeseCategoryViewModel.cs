@@ -9,7 +9,7 @@ namespace CheeseMVC.ViewModels
 {
     public class AddCheeseCategoryViewModel
     {
-        [Required(ErrorMessage ="Cheese Category is required")]
+        [Required(ErrorMessage ="Cheese Category Needed")]
         [Display(Name = "Cheese Category Name")]
         public string Name { get; set; }
     }
